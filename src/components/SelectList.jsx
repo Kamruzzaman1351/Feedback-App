@@ -1,5 +1,8 @@
-
-function SelectList() {
+import PropTypes from 'prop-types'
+function SelectList({selected, select}) {
+    const handleChange = (e) => {
+        select(+e.target.value);
+    }
   return (
     <ul className="rating">
         <li>
@@ -7,6 +10,8 @@ function SelectList() {
                 id="num1"
                 name="rating"
                 value='1'
+                onChange={handleChange}
+                checked={selected === 1}
             />
             <label htmlFor="num1">1</label>
         </li>
@@ -15,6 +20,8 @@ function SelectList() {
                 id="num2"
                 name="rating"
                 value='2'
+                onChange={handleChange}
+                checked={selected === 2}
             />
             <label htmlFor="num2">2</label>
         </li>
@@ -23,6 +30,8 @@ function SelectList() {
                 id="num3"
                 name="rating"
                 value='3'
+                onChange={handleChange}
+                checked={selected === 3}
             />
             <label htmlFor="num3">3</label>
         </li>
@@ -31,6 +40,8 @@ function SelectList() {
                 id="num4"
                 name="rating"
                 value='4'
+                onChange={handleChange}
+                checked={selected === 4}
             />
             <label htmlFor="num4">4</label>
         </li>
@@ -39,6 +50,8 @@ function SelectList() {
                 id="num5"
                 name="rating"
                 value='5'
+                onChange={handleChange}
+                checked={selected === 5}
             />
             <label htmlFor="num5">5</label>
         </li>
@@ -47,6 +60,8 @@ function SelectList() {
                 id="num6"
                 name="rating"
                 value='6'
+                onChange={handleChange}
+                checked={selected === 6}
             />
             <label htmlFor="num6">6</label>
         </li>
@@ -55,6 +70,8 @@ function SelectList() {
                 id="num7"
                 name="rating"
                 value='7'
+                onChange={handleChange}
+                checked={selected === 7}
             />
             <label htmlFor="num7">7</label>
         </li>
@@ -63,6 +80,8 @@ function SelectList() {
                 id="num8"
                 name="rating"
                 value='8'
+                onChange={handleChange}
+                checked={selected === 8}
             />
             <label htmlFor="num8">8</label>
         </li>
@@ -71,6 +90,8 @@ function SelectList() {
                 id="num9"
                 name="rating"
                 value='9'
+                onChange={handleChange}
+                checked={selected === 9}
             />
             <label htmlFor="num9">9</label>
         </li>
@@ -79,6 +100,8 @@ function SelectList() {
                 id="num10"
                 name="rating"
                 value='10'
+                onChange={handleChange}
+                checked={selected === 10}
             />
             <label htmlFor="num10">10</label>
         </li>
@@ -86,4 +109,8 @@ function SelectList() {
   )
 }
 
+SelectList.propTypes = {
+    selected: PropTypes.number.isRequired,
+    select: PropTypes.func.isRequired,
+}
 export default SelectList
