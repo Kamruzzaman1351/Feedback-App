@@ -1,9 +1,9 @@
 import PropTypes from 'prop-types'
 function Header({title, color, backgroundColor, textAlign}) {
     const headerStyle = {
-        backgroundColor: backgroundColor,
-        color: color,
-        textAlign: textAlign,
+        backgroundColor,
+        color,
+        textAlign,
     }
     return (
         <header style={headerStyle}>
