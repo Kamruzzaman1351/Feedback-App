@@ -3,7 +3,7 @@ import Card from "./shared/Card"
 import Button from "./shared/Button"
 import SelectList from "./SelectList"
 import {useState} from "react"
-import { isDisabled } from "@testing-library/user-event/dist/utils"
+import{AnimatePresence, motion} from "framer-motion"
 function FeedBackForm({ addFeedback }) {
     const [text, setText] = useState('');
     const [rating, setRating] = useState(10);
@@ -38,24 +38,29 @@ function FeedBackForm({ addFeedback }) {
         }
     }
   return (
-    <Card>
-        <form onSubmit={handleFormSubmit}>
-            <h3>How would you like to rate our service?</h3>
-            <SelectList 
-                selected={rating}
-                select={(selected) => setRating(selected)}/>
-            <div className="input-group ">
-                <input 
-                    type="text" 
-                    placeholder="Your Feedback" 
-                    value={text} 
-                    onChange={handleInputChange}
-                />
-                <Button type="submit" version="secondary" isDisabled={isDisabled}> Send </Button>                
-            </div>
-            {message && <div className="message">{message}</div>}
-        </form>
-    </Card>
+    <AnimatePresence>
+        <motion.div initial={{opacity:0}} animate={{opacity:1}} exit={{opacity:0}}>
+            <Card>
+                <form onSubmit={handleFormSubmit}>
+                    <h3>How would you like to rate our service?</h3>
+                    <SelectList 
+                        selected={rating}
+                        select={(selected) => setRating(selected)}/>
+                    <div className="input-group ">
+                        <input 
+                            type="text" 
+                            placeholder="Your Feedback" 
+                            value={text} 
+                            onChange={handleInputChange}
+                        />
+                        <Button type="submit" version="secondary" isDisabled={isDisabled}> Send </Button>                
+                    </div>
+                    {message && <motion.div initial={{opacity:0}} animate={{opacity:1}} exit={{opacity:0}} className="message">{message}</motion.div>}                    
+                </form>
+            </Card>
+        </motion.div>
+        
+    </AnimatePresence>
   )
 }
 
