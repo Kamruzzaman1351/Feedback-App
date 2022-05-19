@@ -14,9 +14,11 @@ function FeedBackList({feedback, handleDelete}) {
           {feedback.map(item =>(
             <motion.div 
               key={item.id}
+              whileHover={{scale:1.08}}
               initial={{opacity: 0}}
               animate={{opacity: 1,}}
-              exit={{opacity: 0}}>
+              exit={{opacity: 0}}
+              transition={{duration:1}}>
               <FeedBack key={item.id} item={item} handleDelete={handleDelete}/>
             </motion.div>
           ))}

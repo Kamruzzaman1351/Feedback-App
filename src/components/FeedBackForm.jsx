@@ -39,9 +39,9 @@ function FeedBackForm({ addFeedback }) {
     }
   return (
     <AnimatePresence>
-        <motion.div initial={{opacity:0}} animate={{opacity:1}} exit={{opacity:0}}>
             <Card>
-                <form onSubmit={handleFormSubmit}>
+                <form 
+                    onSubmit={handleFormSubmit}>
                     <h3>How would you like to rate our service?</h3>
                     <SelectList 
                         selected={rating}
@@ -55,11 +55,9 @@ function FeedBackForm({ addFeedback }) {
                         />
                         <Button type="submit" version="secondary" isDisabled={isDisabled}> Send </Button>                
                     </div>
-                    {message && <motion.div initial={{opacity:0}} animate={{opacity:1}} exit={{opacity:0}} className="message">{message}</motion.div>}                    
+                    {message && <motion.div initial={{opacity:0}} animate={{opacity:1}} exit={{opacity:0}} transition={{duration:0.9}} className="message">{message}</motion.div>}                    
                 </form>
-            </Card>
-        </motion.div>
-        
+            </Card>        
     </AnimatePresence>
   )
 }
