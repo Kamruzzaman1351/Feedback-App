@@ -1,6 +1,5 @@
 import Header from "./components/Header";
 import FeedBackList from "./components/FeedBackList";
-import FeedBackData from "./data/FeedBackData";
 import FeedBackStatus from "./components/FeedBackStatus";
 import FeedBackForm from "./components/FeedBackForm";
 import { FeedbackProvider } from "./context/FeedbackContext";

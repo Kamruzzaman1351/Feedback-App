@@ -1,7 +1,7 @@
 import Card from "./shared/Card"
 import Button from "./shared/Button"
 import SelectList from "./SelectList"
-import {useState, useContext} from "react"
+import {useState, useContext, useEffect} from "react"
 import{AnimatePresence, motion} from "framer-motion"
 import FeedbackContext from "../context/FeedbackContext"
 function FeedBackForm() {
@@ -9,7 +9,18 @@ function FeedBackForm() {
     const [rating, setRating] = useState(10);
     const [message, setMessage] = useState('');
     const [isDisabled, setIsDisabled] = useState(true);
-    const { addFeedback } = useContext(FeedbackContext);
+    const { addFeedback, feedbackEdit, updateFeedback } = useContext(FeedbackContext);
+    const [btnText, setBtnText] = useState("Send");
+    useEffect(() => {
+        if(feedbackEdit.edit === true){
+            setIsDisabled(false);
+            setText(feedbackEdit.item.feedback);
+            setRating(feedbackEdit.item.rating);
+            setBtnText("Update");
+            
+        } 
+    }, [feedbackEdit]);
+
     const handleInputChange = (e) => {        
         if(text === '') {
             setMessage(null);
@@ -30,9 +41,15 @@ function FeedBackForm() {
                 rating: rating,
                 feedback: text,
             }
-            addFeedback(newFeedback)
+            if(feedbackEdit.edit === true) {
+                updateFeedback(feedbackEdit.item.id, newFeedback);
+            } else{
+                addFeedback(newFeedback);
+            }
             setText('');
             setIsDisabled(true);
+            setRating(10);
+            setBtnText("Send")
         } else {
             setMessage("Feedback should be at list 10 charter")
             setIsDisabled(true);
@@ -55,7 +72,7 @@ function FeedBackForm() {
                             value={text} 
                             onChange={handleInputChange}
                         />
-                        <Button type="submit" version="secondary" isDisabled={isDisabled}> Send </Button>                
+                        <Button type="submit" version="secondary" isDisabled={isDisabled}> {btnText} </Button>                
                     </div>
                     {message && <motion.div initial={{opacity:0}} animate={{opacity:1}} exit={{opacity:0}} transition={{duration:0.9}} className="message">{message}</motion.div>}                    
                 </form>
