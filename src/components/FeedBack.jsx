@@ -1,15 +1,20 @@
-import React from 'react'
+import React,{ useContext } from 'react'
 import Card from './shared/Card'
 import PropTypes from 'prop-types'
 import { FaTimes } from "react-icons/fa"
 import {motion} from "framer-motion"
-function FeedBack({item, handleDelete}) {
+import FeedbackContext from '../context/FeedbackContext'
+function FeedBack({item}) {
+const {deleteFeedback} = useContext(FeedbackContext)
   return (
     <div>
         <Card>
             <div className="num-display">{item.rating}</div>
-            <motion.button whileHover={{scale:1.3}} className='close' onClick={() => handleDelete(item.id)}>
-                <FaTimes color='red'/>
+            <motion.button 
+              whileHover={{scale:1.3}} 
+              className='close' 
+              onClick={() => deleteFeedback(item.id)}>
+              <FaTimes color='red'/>
             </motion.button>
             <div className="text-display">{item.feedback}</div>             
         </Card>
@@ -19,6 +24,5 @@ function FeedBack({item, handleDelete}) {
 
 FeedBack.propTypes = {
     item: PropTypes.object.isRequired,
-    handleDelete: PropTypes.func.isRequired,
 }
 export default FeedBack

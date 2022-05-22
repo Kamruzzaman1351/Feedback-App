@@ -1,8 +1,9 @@
-import React from 'react'
-import FeedBack from './FeedBack'
-import PropTypes from 'prop-types'
-import { AnimatePresence, motion} from "framer-motion"
-function FeedBackList({feedback, handleDelete}) {
+import React, { useContext } from 'react';
+import FeedBack from './FeedBack';
+import { AnimatePresence, motion} from "framer-motion";
+import FeedbackContext from '../context/FeedbackContext';
+function FeedBackList() {
+  const {feedback} = useContext(FeedbackContext);
   return (
     // <div>
     //     {feedback.map(item =>
@@ -19,16 +20,12 @@ function FeedBackList({feedback, handleDelete}) {
               animate={{opacity: 1,}}
               exit={{opacity: 0}}
               transition={{duration:1}}>
-              <FeedBack key={item.id} item={item} handleDelete={handleDelete}/>
+              <FeedBack key={item.id} item={item} />
             </motion.div>
           ))}
       </AnimatePresence>
     </div>
   )
-}
-FeedBackList.propTypes = {
-    feedback: PropTypes.array.isRequired,
-    handleDelete: PropTypes.func.isRequired,
 }
 
 export default FeedBackList

@@ -1,14 +1,15 @@
-import PropTypes from 'prop-types'
 import Card from "./shared/Card"
 import Button from "./shared/Button"
 import SelectList from "./SelectList"
-import {useState} from "react"
+import {useState, useContext} from "react"
 import{AnimatePresence, motion} from "framer-motion"
-function FeedBackForm({ addFeedback }) {
+import FeedbackContext from "../context/FeedbackContext"
+function FeedBackForm() {
     const [text, setText] = useState('');
     const [rating, setRating] = useState(10);
-    const [message, setMessage] = useState('')
-    const [isDisabled, setIsDisabled] = useState(true)
+    const [message, setMessage] = useState('');
+    const [isDisabled, setIsDisabled] = useState(true);
+    const { addFeedback } = useContext(FeedbackContext);
     const handleInputChange = (e) => {        
         if(text === '') {
             setMessage(null);
@@ -31,7 +32,7 @@ function FeedBackForm({ addFeedback }) {
             }
             addFeedback(newFeedback)
             setText('');
-
+            setIsDisabled(true);
         } else {
             setMessage("Feedback should be at list 10 charter")
             setIsDisabled(true);
@@ -45,7 +46,8 @@ function FeedBackForm({ addFeedback }) {
                     <h3>How would you like to rate our service?</h3>
                     <SelectList 
                         selected={rating}
-                        select={(selected) => setRating(selected)}/>
+                        select={(selected) => setRating(selected)}
+                    />
                     <div className="input-group ">
                         <input 
                             type="text" 
@@ -62,7 +64,4 @@ function FeedBackForm({ addFeedback }) {
   )
 }
 
-FeedBackForm.propTypes = {
-    addFeedback: PropTypes.func.isRequired,
-}
 export default FeedBackForm

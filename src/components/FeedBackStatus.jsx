@@ -1,5 +1,7 @@
-import PropTypes from 'prop-types'
-function FeedBackStatus({ feedback }) {
+import FeedbackContext from "../context/FeedbackContext";
+import { useContext } from "react";
+function FeedBackStatus() {
+    const {feedback} = useContext(FeedbackContext);
     let avrageRating = feedback.reduce((acc,curr)=> {
         return acc + curr.rating;
     },0);
@@ -11,16 +13,6 @@ function FeedBackStatus({ feedback }) {
         <h4>Avarage Rating: {isNaN(avrageRating)? 0 : avrageRating}</h4>
     </div>
   )
-}
-
-FeedBackStatus.propTypes = {
-    feedback: PropTypes.arrayOf(
-        PropTypes.shape({
-            id: PropTypes.number.isRequired,
-            rating: PropTypes.number.isRequired,
-            feedback: PropTypes.string.isRequired,
-        })
-    )
 }
 
 export default FeedBackStatus
