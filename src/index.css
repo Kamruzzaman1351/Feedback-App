@@ -211,6 +211,18 @@ input:focus {
   margin: 10px 0;
 }
 
+footer {
+  height: 70px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.active{
+  border-bottom: 2px solid #ff6a95;;
+}
+
 @media (max-width: 480px) {
   .rating li {
     margin: 10px 3px;
