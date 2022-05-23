@@ -1,5 +1,5 @@
 import React from 'react';
-import {NavLink} from "react-router-dom";
+import {Link} from "react-router-dom";
 
 function Footer({title, backgroundColor,color,textAlign}) {
     const footerStyle = {
@@ -17,8 +17,8 @@ function Footer({title, backgroundColor,color,textAlign}) {
         <div className="container">
             <h5>&copy;{title}</h5>
             <div>
-            <NavLink activeClassName="active" style={linkStyle} to="/" >Home</NavLink>
-            <NavLink activeClassName="active" style={linkStyle} to="/about" >About</NavLink>
+            <Link style={linkStyle} to="/" >Home</Link>
+            <Link style={linkStyle} to="/about" >About</Link>
             </div>
         </div>
     </footer>
